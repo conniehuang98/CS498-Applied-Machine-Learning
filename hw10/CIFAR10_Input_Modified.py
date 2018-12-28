@@ -215,10 +215,18 @@ def inputs(eval_data, data_dir, batch_size):
     images: Images. 4D tensor of [batch_size, IMAGE_SIZE, IMAGE_SIZE, 3] size.
     labels: Labels. 1D tensor of [batch_size] size.
   """
-  if not eval_data:
+#   if not eval_data:
+#     filenames = [os.path.join(data_dir, 'data_batch_%d.bin' % i)
+#                  for i in xrange(1, 6)]
+#     num_examples_per_epoch = NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN
+  if eval_data == 1:
     filenames = [os.path.join(data_dir, 'data_batch_%d.bin' % i)
-                 for i in xrange(1, 6)]
+                 for i in xrange(1, 5)]
     num_examples_per_epoch = NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN
+  elif eval_data == 2:
+    filenames = [os.path.join(data_dir, 'data_batch_%d.bin') % i]
+                for i in xrange(5, 6)]
+    num_examples_per_epoch = NUM_EXAMPLES_PER_EPOCH_FOR_EVAL
   else:
     filenames = [os.path.join(data_dir, 'test_batch.bin')]
     num_examples_per_epoch = NUM_EXAMPLES_PER_EPOCH_FOR_EVAL
